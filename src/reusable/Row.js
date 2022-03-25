@@ -18,19 +18,20 @@ const Row = ({ title, fetchUrl, isLargeRow }) => {
   return (
     <div className="row">
       {/* Title */}
-      <h2>{title}</h2>
+      <h2 style={{ color: 'white' }}>{title}</h2>
       {/* Cards for Movies */}
       <div className="row-posters">
-        {moviesList.map((movie, i) => (
-          <img
-            key={movie.name}
-            className={`row-poster ${isLargeRow && 'row-poster-large'}`}
-            src={`${imgUrl}${
-              isLargeRow ? movie.poster_path : movie.backdrop_path
-            }`}
-            alt={movie.name}
-          />
-        ))}
+        {moviesList &&
+          moviesList.map((movie, i) => (
+            <img
+              key={i}
+              className={`row-poster ${isLargeRow && 'row-poster-large'}`}
+              src={`${imgUrl}${
+                isLargeRow ? movie.poster_path : movie.backdrop_path
+              }`}
+              alt={movie.name}
+            />
+          ))}
       </div>
     </div>
   );
