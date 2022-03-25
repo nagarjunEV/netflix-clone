@@ -1,25 +1,15 @@
 import './App.css';
-import { Row } from './reusable';
+import { Row, homeScreenRows } from './reusable';
 import urls from './api/requests';
+import Banner from './components/Banner';
 
 function App() {
   return (
-    <div className="App">
-      <Row
-        title="Netflix Orginials"
-        fetchUrl={urls.fetchNetflixOriginals}
-      ></Row>
-      <Row
-        title="Trending"
-        fetchUrl={urls.fetchTrending}
-        isLargeRow={true}
-      ></Row>
-      <Row title="Top Rated" fetchUrl={urls.fetchTopRated}></Row>
-      <Row title="Action" fetchUrl={urls.fetchActionMovies}></Row>
-      <Row title="Comedy" fetchUrl={urls.fetchComedyMovies}></Row>
-      <Row title="Horror" fetchUrl={urls.fetchHorrorMovies}></Row>
-      <Row title="Romance" fetchUrl={urls.fetchRomanceMovies}></Row>
-      <Row title="Documantaries" fetchUrl={urls.fetchDocumantaries}></Row>
+    <div className="app">
+      <Banner />
+      {homeScreenRows.map(({ name, url }) => (
+        <Row key={name} title={name} fetchUrl={urls[url]} />
+      ))}
     </div>
   );
 }
